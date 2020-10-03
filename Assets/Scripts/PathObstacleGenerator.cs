@@ -12,7 +12,7 @@ public class PathObstacleGenerator : MonoBehaviour
     [SerializeField] private float obstacleTileLength = 1f;
     [SerializeField] private Vector3 obstacleOffset;
 
-    [SerializeField] private int obstaclePerTurn = 120;
+    [SerializeField] private int startingObstacles = 100;
     
     private List<GameObject> obstaclePoints = new List<GameObject>();
     private List<GameObject> availableObstaclePoints = new List<GameObject>();
@@ -22,35 +22,36 @@ public class PathObstacleGenerator : MonoBehaviour
     void Start()
     {
         pathCreator = GetComponent<PathCreator>();
+    }
 
+    public void InitializeObstacle()
+    {
         InitObstaclePos();
 
         availableObstaclePoints = obstaclePoints;
         
-        SpawnRandomObstacles();
+        SpawnRandomObstacles(startingObstacles);
     }
-
+    
     private void RefreshAvailableObstaclePoints()
     {
         for (int i = 0; i < availableObstaclePoints.Count; i++)
         {
-            if (availableObstaclePoints[i].transform.childCount >= 2)
+            if (availableObstaclePoints[i].transform.childCount >= 4)
             {
                 availableObstaclePoints.Remove(availableObstaclePoints[i]);
             }
         }
     }
     
-    public void SpawnRandomObstacles()
+    public void SpawnRandomObstacles(int quantity)
     {
-        for (int i = 0; i < obstaclePerTurn; i++)
+        for (int i = 0; i < quantity; i++)
         {
             int random = Random.Range(0, availableObstaclePoints.Count);
-            int posRandom = Random.Range(1, 4);
-            if (availableObstaclePoints[random].transform.childCount < 3)
-            {
-                availableObstaclePoints[random].GetComponent<ObstacleBehaviour>().SpawnObstacle(posRandom);
-            }
+            int posRandom = Random.Range(1, 6);
+
+            availableObstaclePoints[random].GetComponent<ObstacleBehaviour>().SpawnObstacle(posRandom);
 
             RefreshAvailableObstaclePoints();
         }

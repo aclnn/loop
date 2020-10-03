@@ -2,6 +2,6 @@
 {
     public enum ObstacleEnum
     {
-        LEFT = 1, MIDDLE = 2, RIGHT = 3
+       FAR_LEFT = 1, LEFT = 2, MIDDLE = 3, RIGHT = 4, FAR_RIGHT = 5
     }
 }
