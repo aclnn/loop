@@ -11,9 +11,18 @@ public class Follower : MonoBehaviour
     [SerializeField] private Vector3 transformOffset;
 
     public UnityEvent lapDone = new UnityEvent();
-    
-    void Start()
+
+    private bool gameStarted = false;
+
+    public bool GameStarted
     {
+        get => gameStarted;
+        set => gameStarted = value;
+    }
+
+    public void AddSpeed(float add)
+    {
+        speed += add;
     }
 
     // Update is called once per frame
@@ -21,7 +30,12 @@ public class Follower : MonoBehaviour
     {
         //J'ai suivi le tuto pour faire ça
         distanceTravelled += speed * Time.deltaTime;
-        currentLapDistance += speed * Time.deltaTime;
+        
+        if (gameStarted)
+        {
+            currentLapDistance += speed * Time.deltaTime;
+        }
+        
         transform.position = pathCreator.path.GetPointAtDistance(distanceTravelled) + transformOffset;
         transform.rotation = pathCreator.path.GetRotationAtDistance(distanceTravelled);
 
@@ -29,6 +43,7 @@ public class Follower : MonoBehaviour
         
         if (currentLapDistance > pathCreator.path.length)
         {
+            Debug.Log("LAP DONE");
             currentLapDistance = 0;
             lapDone.Invoke();
         }
