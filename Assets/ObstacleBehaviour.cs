@@ -36,6 +36,22 @@ public class ObstacleBehaviour : MonoBehaviour
         }
     }
 
+    public void SpawnObstacle(int pos)
+    {
+        if (pos == 1)
+        {
+            SpawnObstacle(ObstacleEnum.LEFT);
+        }
+        else if (pos == 2)
+        {
+            SpawnObstacle(ObstacleEnum.MIDDLE);
+        }
+        else if (pos == 3)
+        {
+            SpawnObstacle(ObstacleEnum.RIGHT);
+        }
+    }
+
     public void DestroyObstacles()
     {
         for (int i = 0; i < transform.childCount; i++)
