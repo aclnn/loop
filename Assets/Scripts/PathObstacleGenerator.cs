@@ -32,6 +32,11 @@ public class PathObstacleGenerator : MonoBehaviour
     {
         pathCreator.path.GetPointAtTime(obstacleTileLength);
     }
+
+    private void SpawnObstacles()
+    {
+        
+    }
     
     
     #if UNITY_EDITOR

@@ -191,7 +191,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 68685629}
-  m_Mesh: {fileID: 1320628845}
+  m_Mesh: {fileID: 1823967564}
 --- !u!4 &68685632
 Transform:
   m_ObjectHideFlags: 0
@@ -666,7 +666,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pathCreator: {fileID: 1299504605}
   obstacleTileLength: 0.0107
---- !u!43 &1320628845
+--- !u!43 &1823967564
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
