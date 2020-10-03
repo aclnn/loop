@@ -60,6 +60,7 @@
             </e>
           </e>
         </e>
+        <e p="PlayerBehaviour.cs" t="Include" />
         <e p="Prefabs" t="Include">
           <e p="ObstacleEnum.cs" t="Include" />
         </e>

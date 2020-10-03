@@ -8,26 +8,31 @@ public class ObstacleBehaviour : MonoBehaviour
     [SerializeField] private GameObject obstaclePrefab;
     [SerializeField] private float obsOffset = 3.8f;
     private GameObject tempoObstacle;
+
+    private GameObject leftObstacle;
+    private GameObject middleObstacle;
+    private GameObject rightObstacle;
+    
     private ObstacleEnum obstacleEnum;
     
     public void SpawnObstacle(ObstacleEnum pos)
     {
-        if (pos == ObstacleEnum.LEFT)
+        if (pos == ObstacleEnum.LEFT && leftObstacle == null)
         {
-            tempoObstacle = Instantiate(obstaclePrefab, transform);
-            tempoObstacle.transform.Rotate(0, 90, 0);
+            leftObstacle = Instantiate(obstaclePrefab, transform);
+            leftObstacle.transform.Rotate(0, 90, 0);
         } 
-        else if (pos == ObstacleEnum.MIDDLE)
+        else if (pos == ObstacleEnum.MIDDLE && middleObstacle == null)
         {
-            tempoObstacle = Instantiate(obstaclePrefab, transform);
-            tempoObstacle.transform.localPosition += new Vector3(-obsOffset, 0, 0);
-            tempoObstacle.transform.Rotate(0, 90, 0);
+            middleObstacle = Instantiate(obstaclePrefab, transform);
+            middleObstacle.transform.localPosition += new Vector3(-obsOffset, 0, 0);
+            middleObstacle.transform.Rotate(0, 90, 0);
         }
-        else
+        else if (pos == ObstacleEnum.RIGHT && rightObstacle == null)
         {
-            tempoObstacle = Instantiate(obstaclePrefab, transform);
-            tempoObstacle.transform.localPosition += new Vector3(obsOffset, 0, 0);
-            tempoObstacle.transform.Rotate(0, 90, 0);
+            rightObstacle = Instantiate(obstaclePrefab, transform);
+            rightObstacle.transform.localPosition += new Vector3(obsOffset, 0, 0);
+            rightObstacle.transform.Rotate(0, 90, 0);
         }
     }
 
