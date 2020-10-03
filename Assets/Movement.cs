@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using PathCreation.Examples;
 using UnityEngine;
@@ -7,14 +8,16 @@ public class Movement : MonoBehaviour
 {
     [SerializeField] private float sensivity = 0.2f;
     [SerializeField] private float clampOffset = 1f;
+    
     public RoadMeshCreator roadMeshCreator;
     public bool movementEnabled = false;
-
+    
     public bool MovementEnabled
     {
         get => movementEnabled;
         set => movementEnabled = value;
     }
+
 
     // Update is called once per frame
     void Update()
@@ -26,6 +29,5 @@ public class Movement : MonoBehaviour
             position.x = Mathf.Clamp(position.x, -roadMeshCreator.roadWidth + clampOffset, roadMeshCreator.roadWidth - clampOffset);
             transform.localPosition = position;
         }
-            
     }
 }
