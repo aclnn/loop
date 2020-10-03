@@ -1666,7 +1666,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pathCreator: {fileID: 1299504605}
-  speed: 5
+  speed: 10
   transformOffset: {x: 0, y: 1, z: 0}
 --- !u!4 &112249236
 Transform:
@@ -13396,7 +13396,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 26.991467
+  field of view: 25
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -21689,6 +21689,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1857803706}
   - component: {fileID: 1857803707}
+  - component: {fileID: 1857803709}
+  - component: {fileID: 1857803708}
   m_Layer: 0
   m_Name: PlayerOffset
   m_TagString: Untagged
@@ -21726,6 +21728,33 @@ MonoBehaviour:
   sensivity: 0.2
   maxOffset: 1
   roadMeshCreator: {fileID: 1299504607}
+--- !u!65 &1857803708
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1857803705}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.8347694, y: 1, z: 1.1072229}
+  m_Center: {x: -0.0826153, y: 0, z: -2.8585583e-16}
+--- !u!136 &1857803709
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1857803705}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.33
+  m_Height: 2.33
+  m_Direction: 0
+  m_Center: {x: 0.37, y: 0, z: 0}
 --- !u!1 &1864504723
 GameObject:
   m_ObjectHideFlags: 0
