@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2536560335140170056}
   - component: {fileID: 1124561005390556030}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ObstaclePoint
-  m_TagString: Untagged
+  m_TagString: ObstacleTag
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -45,4 +45,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   obstaclePrefab: {fileID: 1592278248286634746, guid: b22667bcd45e7be4e83be9a0ce799e58,
     type: 3}
-  hasObstacle: 0
+  obsOffset: 3.8

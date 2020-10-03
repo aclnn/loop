@@ -21,9 +21,9 @@ public class ObstacleBehaviour : MonoBehaviour
     {
         if (pos == ObstacleEnum.FAR_LEFT && farLeftObstacle == null)
         {
-            middleObstacle = Instantiate(obstaclePrefab, transform);
-            middleObstacle.transform.localPosition += new Vector3(-obsOffset*2, 0, 0);
-            middleObstacle.transform.Rotate(0, 90, 0);
+            farLeftObstacle = Instantiate(obstaclePrefab, transform);
+            farLeftObstacle.transform.localPosition += new Vector3(-(obsOffset*2), 0, 0);
+            farLeftObstacle.transform.Rotate(0, 90, 0);
         } 
         else if (pos == ObstacleEnum.LEFT && leftObstacle == null)
         {

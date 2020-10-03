@@ -33,6 +33,16 @@ public class PathObstacleGenerator : MonoBehaviour
         SpawnRandomObstacles(startingObstacles);
     }
     
+    public void DestroyAllObstacles()
+    {
+        foreach (var point in GameObject.FindGameObjectsWithTag("ObstacleTag"))
+        {
+            DestroyImmediate(point);
+        }
+        obstaclePoints.Clear();
+        availableObstaclePoints.Clear();
+    }
+    
     private void RefreshAvailableObstaclePoints()
     {
         for (int i = 0; i < availableObstaclePoints.Count; i++)
@@ -74,6 +84,8 @@ public class PathObstacleGenerator : MonoBehaviour
             obstaclePoints.Add(instantiatedObj);
         }
     }
+
+    
     
     [ContextMenu("SpawnObstacles")]
     private void SpawnObstacles()
@@ -83,15 +95,6 @@ public class PathObstacleGenerator : MonoBehaviour
             point.GetComponent<ObstacleBehaviour>().SpawnObstacle(ObstacleEnum.LEFT);
             point.GetComponent<ObstacleBehaviour>().SpawnObstacle(ObstacleEnum.MIDDLE);
             point.GetComponent<ObstacleBehaviour>().SpawnObstacle(ObstacleEnum.RIGHT);
-        }
-    }
-
-    [ContextMenu("DestroyObstacles")]
-    private void DestroyObstacles()
-    {
-        foreach (var point in obstaclePoints)
-        {
-            point.GetComponent<ObstacleBehaviour>().DestroyObstacles();
         }
     }
 
