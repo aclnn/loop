@@ -18,7 +18,9 @@ public class DrillBehaviour : MonoBehaviour
     [Header("References")] 
     public Follower follower;
     [SerializeField] private Camera camera;
+    [SerializeField] private Movement movement;
     [SerializeField] private TextMeshProUGUI drillText;
+    [SerializeField] private TextMeshProUGUI drillTimerText;
     [SerializeField] private Collider bodyCollider;
     [SerializeField] private LayerMask obstacleLayer;
     void Start()
@@ -57,6 +59,7 @@ public class DrillBehaviour : MonoBehaviour
     {
         if (drillCharge >= drillChargeMax)
         {
+            StartCoroutine(DrillTimer());
             StartCoroutine(ChangeCameraFov(camera.fieldOfView + cameraFovIncrement));
             drillCharge = 0;
             IncreaseDrillCharge(0); //Mettre à jour le texte
@@ -69,6 +72,20 @@ public class DrillBehaviour : MonoBehaviour
             bodyCollider.enabled = true;
             Debug.Log("DRILL OFF");
         }
+    }
+
+    //DEbug ONLY
+    private IEnumerator DrillTimer()
+    {
+        float timer = 5;
+        while(timer > 0)
+        {
+            timer -= Time.deltaTime;
+            drillTimerText.text = "drill: " + Mathf.RoundToInt(timer) + " sec";
+            yield return new WaitForEndOfFrame();
+        }
+
+        drillTimerText.text = "drill: " + 0 + " sec";
     }
 
     private IEnumerator ChangeCameraFov(float goalfov)
@@ -97,7 +114,6 @@ public class DrillBehaviour : MonoBehaviour
     {
         if (obstacleLayer == (obstacleLayer | (1 << other.gameObject.layer)))
         {
-            Debug.Log("OBSTACLE COLLDIE");
             Destroy(other.gameObject);
         }
     }
@@ -106,6 +122,9 @@ public class DrillBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetMouseButtonDown(0) &&  movement.movementEnabled)
+        {
+            StartCoroutine(GetComponentInChildren<DrillBehaviour>().ActivateDrill(5));
+        }
     }
 }
