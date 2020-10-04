@@ -32,6 +32,11 @@ public class Movement : MonoBehaviour
 
             TiltShip();
         }
+
+        if (Input.GetMouseButtonDown(0) && movementEnabled)
+        {
+            StartCoroutine(GetComponentInChildren<DrillBehaviour>().ActivateDrill(5));
+        }
     }
 
     void TiltShip()

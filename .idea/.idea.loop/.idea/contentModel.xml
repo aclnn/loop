@@ -16,6 +16,7 @@
           </e>
         </e>
         <e p="DestroyParticles.cs" t="Include" />
+        <e p="DrillBehaviour.cs" t="Include" />
         <e p="Follower.cs" t="Include" />
         <e p="Movement.cs" t="Include" />
         <e p="ObstacleBehaviour.cs" t="Include" />
