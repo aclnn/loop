@@ -8,9 +8,6 @@ public class ObstacleBehaviour : MonoBehaviour
     [SerializeField] private GameObject obstaclePrefab;
     [SerializeField] private float obsOffset = 3.8f;
 
-    public Material firstHalf;
-    public Material secondsHalf;
-    
     private GameObject tempoObstacle;
 
     private GameObject farLeftObstacle;
@@ -20,16 +17,6 @@ public class ObstacleBehaviour : MonoBehaviour
     private GameObject farRightObstacle;
     
     private ObstacleEnum obstacleEnum;
-
-    public void SetToFirstHalf()
-    {
-        obstaclePrefab.GetComponent<MeshRenderer>().material = firstHalf;
-    }
-    
-    public void SetToSecondHalf()
-    {
-        obstaclePrefab.GetComponent<MeshRenderer>().material = secondsHalf;
-    }
     
     public void SpawnObstacle(ObstacleEnum pos)
     {
