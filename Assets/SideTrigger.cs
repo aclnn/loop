@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class SideTrigger : MonoBehaviour
 {
-    private void OnTriggerLeave(Collider other)
+    private void OnTriggerExit(Collider other)
     {
         transform.parent.GetComponent<PlayerBehaviour>().SideTrigger();
     }
