@@ -4517,6 +4517,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   drillBehaviour: {fileID: 767399887}
+  sideTriggerParticles: {fileID: 7405523290973383655, guid: caf24cc9f332505479bbae555e84e94c,
+    type: 3}
 --- !u!1001 &1624794569
 PrefabInstance:
   m_ObjectHideFlags: 0
