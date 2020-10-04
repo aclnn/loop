@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 using PathCreation;
 using TMPro;
@@ -13,8 +14,10 @@ public class Follower : MonoBehaviour
     [SerializeField] private Vector3 transformOffset;
 
     [SerializeField] private Camera camera;
-    [SerializeField] private float fovStepTime = 0.3f;
-    [SerializeField] private float fovDecreaseTime = 1f;
+    [SerializeField] [Range(0, 1f)] private float fovStepTime = 0.3f;
+    [SerializeField] [Range(0, 1f)] private float speedStepTime = 0.3f;
+    [SerializeField] [Range(0, 1f)] private float displaySpeedStepTime = 0.3f;
+    [SerializeField] [Range(0, 1f)] private float fovDecreaseTime = 1f;
 
     [SerializeField] private TextMeshProUGUI speedText;
     
@@ -27,8 +30,7 @@ public class Follower : MonoBehaviour
     private float targetfov;
     private float targetSpeed;
     private float startingSpeed;
-
-    private float smoothRef;
+    private float displaySpeed;
 
     public bool CanMove
     {
@@ -53,8 +55,8 @@ public class Follower : MonoBehaviour
         targetSpeed += add;
         while (speed < targetSpeed)
         {
-            speed = Mathf.SmoothDamp(speed, targetSpeed, ref smoothRef, fovStepTime);
-            yield return null;
+            speed = Mathf.Lerp(speed, targetSpeed, speedStepTime);
+            yield return new WaitForEndOfFrame();
         }
     }
 
@@ -63,8 +65,8 @@ public class Follower : MonoBehaviour
         targetfov += 1;
         while (camera.fieldOfView < targetfov)
         {
-            camera.fieldOfView = Mathf.SmoothDamp(camera.fieldOfView, targetfov, ref smoothRef, fovStepTime);
-            yield return null;
+            camera.fieldOfView = Mathf.Lerp(camera.fieldOfView, targetfov, fovStepTime);
+            yield return new WaitForEndOfFrame();
         }
     }
 
@@ -74,6 +76,7 @@ public class Follower : MonoBehaviour
         currentLapDistance = 0;
         speed = startingSpeed;
         targetSpeed = startingSpeed;
+        displaySpeed = startingSpeed;
         StartCoroutine(ReduceFOV());
     }
 
@@ -81,8 +84,8 @@ public class Follower : MonoBehaviour
     {
         while (camera.fieldOfView > cameraStartingFov)
         {
-            camera.fieldOfView = Mathf.SmoothDamp(camera.fieldOfView, cameraStartingFov,ref smoothRef, fovDecreaseTime);
-            yield return null;
+            camera.fieldOfView = Mathf.Lerp(camera.fieldOfView, cameraStartingFov, fovDecreaseTime);
+            yield return new WaitForEndOfFrame();
         }
 
         camera.fieldOfView = cameraStartingFov;
@@ -94,19 +97,26 @@ public class Follower : MonoBehaviour
         targetfov = camera.fieldOfView;
         startingSpeed = speed;
         targetSpeed = speed;
-        
+        displaySpeed = speed;
+
     }
     
     // Update is called once per frame
     void Update()
     {
-        speedText.text = "Speed: " + System.Math.Round(speed, 3);
+        displaySpeed = Mathf.Lerp(displaySpeed, targetSpeed, displaySpeedStepTime);
+        speedText.text = String.Format("Speed: {0:F3}", Math.Round(displaySpeed, 3));
         
         if (canMove)
         {
             distanceTravelled += speed * Time.deltaTime;
             transform.position = pathCreator.path.GetPointAtDistance(distanceTravelled) + transformOffset;
-            transform.rotation = pathCreator.path.GetRotationAtDistance(distanceTravelled);
+            transform.rotation = new Quaternion(
+                pathCreator.path.GetRotationAtDistance(distanceTravelled).x,
+                pathCreator.path.GetRotationAtDistance(distanceTravelled).y,
+                pathCreator.path.GetRotationAtDistance(distanceTravelled).z,
+                pathCreator.path.GetRotationAtDistance(distanceTravelled).w
+                );
         }
         //J'ai suivi le tuto pour faire ça
         

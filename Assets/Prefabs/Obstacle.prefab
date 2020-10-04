@@ -12,13 +12,13 @@ GameObject:
   - component: {fileID: 1992054226801164383}
   - component: {fileID: 8470212114275177170}
   - component: {fileID: 4725407724218596188}
-  - component: {fileID: -6790812715169957825}
+  - component: {fileID: -5572901144884448467}
   m_Layer: 8
   m_Name: Obstacle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &7618326608359298759
 Transform:
@@ -96,7 +96,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &-6790812715169957825
+--- !u!54 &-5572901144884448467
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
