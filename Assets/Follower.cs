@@ -77,6 +77,7 @@ public class Follower : MonoBehaviour
         speed = startingSpeed;
         targetSpeed = startingSpeed;
         displaySpeed = startingSpeed;
+        targetfov = cameraStartingFov;
         StartCoroutine(ReduceFOV());
     }
 
@@ -94,7 +95,7 @@ public class Follower : MonoBehaviour
     void Start()
     {
         cameraStartingFov = camera.fieldOfView;
-        targetfov = camera.fieldOfView;
+        targetfov = cameraStartingFov;
         startingSpeed = speed;
         targetSpeed = speed;
         displaySpeed = speed;

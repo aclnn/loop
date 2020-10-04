@@ -71,7 +71,7 @@ public class PathObstacleGenerator : MonoBehaviour
     {
         obstaclePoints.Clear();
         
-        for (float i = 0; i < pathCreator.path.length; i += obstacleTileLength)
+        for (float i = 0; i < pathCreator.path.length - 1; i += obstacleTileLength)
         {
             //pathCreator.path.GetPointAtTime(i) récupère les points du chemin en fonction du temps, de 0 à 1
             var instantiatedObj = Instantiate(obstaclePoint);
