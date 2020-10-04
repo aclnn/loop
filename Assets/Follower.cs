@@ -20,6 +20,7 @@ public class Follower : MonoBehaviour
     [SerializeField] private Vector3 transformOffset;
 
     [SerializeField] private Camera camera;
+    [SerializeField] private float fovStep = 0.5f;
     [SerializeField] [Range(0, 1f)] private float fovStepTime = 0.3f;
     [SerializeField] [Range(0, 1f)] private float speedStepTime = 0.3f;
     [SerializeField] [Range(0, 1f)] private float displaySpeedStepTime = 0.3f;
@@ -68,7 +69,7 @@ public class Follower : MonoBehaviour
 
     private IEnumerator AddFov()
     {
-        targetfov += 1;
+        targetfov += fovStep;
         while (camera.fieldOfView < targetfov)
         {
             camera.fieldOfView = Mathf.Lerp(camera.fieldOfView, targetfov, fovStepTime);
