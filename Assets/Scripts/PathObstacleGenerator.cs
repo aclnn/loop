@@ -13,10 +13,20 @@ public class PathObstacleGenerator : MonoBehaviour
     [SerializeField] private Vector3 obstacleOffset;
 
     [SerializeField] private int startingObstacles = 100;
+
+    [SerializeField] private Follower follower;
     
     private List<GameObject> obstaclePoints = new List<GameObject>();
     private List<GameObject> availableObstaclePoints = new List<GameObject>();
-    
+
+    public bool half = true;
+
+    public bool Half
+    {
+        get => half;
+        set => half = value;
+    }
+
     //Dans l'inspector -> les 3 petits points ça ajoute un bouton pour lancer la fonction
     [ContextMenu("Start")]
     void Start()
@@ -30,6 +40,8 @@ public class PathObstacleGenerator : MonoBehaviour
 
         availableObstaclePoints = obstaclePoints;
         
+        //call 2 fois pour chaque moitié
+        SpawnRandomObstacles(startingObstacles);
         SpawnRandomObstacles(startingObstacles);
     }
     
@@ -41,6 +53,7 @@ public class PathObstacleGenerator : MonoBehaviour
         }
         obstaclePoints.Clear();
         availableObstaclePoints.Clear();
+        half = true;
     }
     
     private void RefreshAvailableObstaclePoints()
@@ -56,45 +69,60 @@ public class PathObstacleGenerator : MonoBehaviour
     
     public void SpawnRandomObstacles(int quantity)
     {
+        if (half)
+        {
+            Debug.Log("First Half");
+        }
+        else
+        {
+            Debug.Log("Second Hal");
+        }
         for (int i = 0; i < quantity; i++)
         {
-            int random = Random.Range(0, availableObstaclePoints.Count);
+            int random;
+            if (half)
+            {
+                random = Random.Range(0, availableObstaclePoints.Count/2);
+                availableObstaclePoints[random].GetComponent<ObstacleBehaviour>().SetToFirstHalf();
+            }
+            else
+            {
+                random = Random.Range((availableObstaclePoints.Count/2) +1, availableObstaclePoints.Count);
+                availableObstaclePoints[random].GetComponent<ObstacleBehaviour>().SetToSecondHalf();
+            }
+            
             int posRandom = Random.Range(1, 6);
 
             availableObstaclePoints[random].GetComponent<ObstacleBehaviour>().SpawnObstacle(posRandom);
-
+            
             RefreshAvailableObstaclePoints();
         }
+        half = !half;
     }
 
     private void InitObstaclePos()
     {
         obstaclePoints.Clear();
         
-        for (float i = 0; i < pathCreator.path.length - 1; i += obstacleTileLength)
+        for (float i = 0; i < pathCreator.path.length -1; i += obstacleTileLength)
         {
-            //pathCreator.path.GetPointAtTime(i) récupère les points du chemin en fonction du temps, de 0 à 1
             var instantiatedObj = Instantiate(obstaclePoint);
-            instantiatedObj.transform.position = pathCreator.path.GetPointAtDistance(i) + obstacleOffset;
-            instantiatedObj.transform.localRotation = new Quaternion(
-                pathCreator.path.GetRotationAtDistance(i).x, 
-                pathCreator.path.GetRotationAtDistance(i).y,
-                pathCreator.path.GetRotationAtDistance(i).z,
-                pathCreator.path.GetRotationAtDistance(i).w);
+            instantiatedObj.transform.position = pathCreator.path.GetPointAtDistance(i + follower.DistanceTravelled) + obstacleOffset;
+            instantiatedObj.transform.localRotation = pathCreator.path.GetRotationAtDistance(i + follower.DistanceTravelled);
             obstaclePoints.Add(instantiatedObj);
         }
     }
-
-    
     
     [ContextMenu("SpawnObstacles")]
     private void SpawnObstacles()
     {
         foreach (var point in obstaclePoints)
         {
+            point.GetComponent<ObstacleBehaviour>().SpawnObstacle(ObstacleEnum.FAR_LEFT);
             point.GetComponent<ObstacleBehaviour>().SpawnObstacle(ObstacleEnum.LEFT);
             point.GetComponent<ObstacleBehaviour>().SpawnObstacle(ObstacleEnum.MIDDLE);
             point.GetComponent<ObstacleBehaviour>().SpawnObstacle(ObstacleEnum.RIGHT);
+            point.GetComponent<ObstacleBehaviour>().SpawnObstacle(ObstacleEnum.FAR_RIGHT);
         }
     }
 

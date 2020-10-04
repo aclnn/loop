@@ -46,3 +46,5 @@ MonoBehaviour:
   obstaclePrefab: {fileID: 1592278248286634746, guid: b22667bcd45e7be4e83be9a0ce799e58,
     type: 3}
   obsOffset: 3.8
+  firstHalf: {fileID: 2100000, guid: 01763a1c279a5cd4d8f897f6b6cdbae5, type: 2}
+  secondsHalf: {fileID: 2100000, guid: 9ca80467a033e954a8b9ad8601d6f4c7, type: 2}

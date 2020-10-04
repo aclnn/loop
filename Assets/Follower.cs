@@ -10,6 +10,12 @@ public class Follower : MonoBehaviour
     public PathCreator pathCreator;
     public float speed = 5;
     private float distanceTravelled;
+
+    public float DistanceTravelled
+    {
+        get => distanceTravelled;
+    }
+
     private float currentLapDistance;
     [SerializeField] private Vector3 transformOffset;
 
@@ -112,12 +118,7 @@ public class Follower : MonoBehaviour
         {
             distanceTravelled += speed * Time.deltaTime;
             transform.position = pathCreator.path.GetPointAtDistance(distanceTravelled) + transformOffset;
-            transform.rotation = new Quaternion(
-                pathCreator.path.GetRotationAtDistance(distanceTravelled).x,
-                pathCreator.path.GetRotationAtDistance(distanceTravelled).y,
-                pathCreator.path.GetRotationAtDistance(distanceTravelled).z,
-                pathCreator.path.GetRotationAtDistance(distanceTravelled).w
-                );
+            transform.rotation = pathCreator.path.GetRotationAtDistance(distanceTravelled);
         }
         //J'ai suivi le tuto pour faire ça
         
@@ -126,9 +127,8 @@ public class Follower : MonoBehaviour
             currentLapDistance += speed * Time.deltaTime;
         }
         
-        if (currentLapDistance > pathCreator.path.length)
+        if (currentLapDistance > pathCreator.path.length/2)
         {
-            Debug.Log("LAP DONE");
             currentLapDistance = 0;
             lapDone.Invoke();
         }
