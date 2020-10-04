@@ -2288,6 +2288,8 @@ MonoBehaviour:
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 256
+  brickDestroyParticles: {fileID: 7653068020829524502, guid: a821be7b7b6f6f74a9663fc8901d8454,
+    type: 3}
 --- !u!65 &767399888
 BoxCollider:
   m_ObjectHideFlags: 0

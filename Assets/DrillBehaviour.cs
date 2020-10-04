@@ -23,6 +23,8 @@ public class DrillBehaviour : MonoBehaviour
     [SerializeField] private TextMeshProUGUI drillTimerText;
     [SerializeField] private Collider bodyCollider;
     [SerializeField] private LayerMask obstacleLayer;
+    [SerializeField] private GameObject brickDestroyParticles;
+    
     void Start()
     {
         collider = GetComponent<Collider>();
@@ -115,6 +117,7 @@ public class DrillBehaviour : MonoBehaviour
         if (obstacleLayer == (obstacleLayer | (1 << other.gameObject.layer)))
         {
             Destroy(other.gameObject);
+            Instantiate(brickDestroyParticles, other.transform.position, Quaternion.identity);
         }
     }
 
