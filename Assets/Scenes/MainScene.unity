@@ -634,6 +634,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 1857803707}
+        m_TargetAssemblyTypeName: Movement, Assembly-CSharp
+        m_MethodName: set_MovementEnabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!222 &348415633
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -944,18 +956,6 @@ MonoBehaviour:
       - m_Target: {fileID: 112249235}
         m_TargetAssemblyTypeName: Follower, Assembly-CSharp
         m_MethodName: set_StartCountingLap
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 1857803707}
-        m_TargetAssemblyTypeName: Movement, Assembly-CSharp
-        m_MethodName: set_MovementEnabled
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1364,7 +1364,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 1000
+  far clip plane: 2000
   field of view: 30
   orthographic: 0
   orthographic size: 5
