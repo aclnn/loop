@@ -15,7 +15,6 @@ public class Countdown : MonoBehaviour
 
     [SerializeField] private float timer = 4f;
     
-    private float timeOffset = 0;
     private float tempoTimer;
     public void Start()
     {
