@@ -82,12 +82,12 @@ public class PathObstacleGenerator : MonoBehaviour
             int random;
             if (half)
             {
-                random = Random.Range(0, availableObstaclePoints.Count/2);
+                random = Random.Range(0, availableObstaclePoints.Count/2 - 1);
                 availableObstaclePoints[random].GetComponent<ObstacleBehaviour>().SetToFirstHalf();
             }
             else
             {
-                random = Random.Range((availableObstaclePoints.Count/2) +1, availableObstaclePoints.Count);
+                random = Random.Range((availableObstaclePoints.Count/2), availableObstaclePoints.Count);
                 availableObstaclePoints[random].GetComponent<ObstacleBehaviour>().SetToSecondHalf();
             }
             
