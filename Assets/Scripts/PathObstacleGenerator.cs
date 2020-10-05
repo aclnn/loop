@@ -78,12 +78,20 @@ public class PathObstacleGenerator : MonoBehaviour
 
     public void CallSpawnRandomObstacles(int quantity)
     {
+        Debug.Log("FUNCITON CALLED RANDOMOBS");
         StartCoroutine(SpawnRandomObstacles(quantity));
     }
     
     private IEnumerator SpawnRandomObstacles(int quantity)
     {
         yield return new WaitForSeconds(1f);
+        
+        Debug.Log("COROUTINE CALLED RANOMOBS");
+
+        availableObstaclePoints = obstaclePoints;
+        
+        RefreshAvailableObstaclePoints();
+        
         for (int i = 0; i < quantity; i++)
         {
             int random;
@@ -103,8 +111,8 @@ public class PathObstacleGenerator : MonoBehaviour
             RefreshAvailableObstaclePoints();
         }
         
-        Debug.Break();
         half = !half;
+        Debug.Log("Available points = " + availableObstaclePoints.Count);
     }
 
     private void InitObstaclePos()

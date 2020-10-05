@@ -78,6 +78,7 @@ public class PlayerBehaviour : MonoBehaviour
     {
         followerComponent.CanMove = false;
         movementComponent.MovementEnabled = false;
+        followerComponent.StartCountingLap = false;
         restartGameObject.SetActive(true);
         
         for (int i = 0; i < 2; i++)
