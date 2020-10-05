@@ -36,6 +36,10 @@ public class PlayerBehaviour : MonoBehaviour
         shipImmunitySound = Resources.Load<AudioClip>("Sounds/ShipImmunity");
 
         health = baseHealth;
+    }
+
+    private void Update()
+    {
         healthText.text = "life: " + health + "/" + baseHealth;
     }
     
@@ -56,7 +60,6 @@ public class PlayerBehaviour : MonoBehaviour
     public void BrickCollide()
     {
         health--;
-        healthText.text = "life: " + health + "/" + baseHealth;
         
         if (health <= 0)
         {
