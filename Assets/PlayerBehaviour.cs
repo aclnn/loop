@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using PathCreation;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -12,6 +13,8 @@ public class PlayerBehaviour : MonoBehaviour
     [SerializeField] private float sideTriggerSpeedIncrement = 0.1f;
     [SerializeField] private int baseHealth;
     [SerializeField] private GameObject restartGameObject;
+    [SerializeField] private TextMeshProUGUI healthText;
+    [SerializeField] private CursorScript cursorScript;
     private int health;
     public UnityEvent collide;
     private Collider hitCollider;
@@ -27,6 +30,19 @@ public class PlayerBehaviour : MonoBehaviour
         health = baseHealth;
     }
 
+    private void Update()
+    {
+        healthText.text = "life: " + health + "/" + baseHealth;
+        if (health <= 1)
+        {
+            healthText.color = new Color(252, 157, 3);
+        }
+        else
+        {
+            healthText.color = Color.white;
+        }
+     }
+    
     private void OnTriggerEnter(Collider other)
     {
         if (obstacleLayer == (obstacleLayer | (1 << other.gameObject.layer)))
@@ -65,6 +81,7 @@ public class PlayerBehaviour : MonoBehaviour
         }
         Instantiate(explosion, transform.position, transform.rotation, transform.parent);
         hitCollider.enabled = false;
+        cursorScript.EnableCursor();
     }
 
     public IEnumerator Immunity(float duration)

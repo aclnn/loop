@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using DefaultNamespace;
 using PathCreation;
 using UnityEngine;
@@ -41,8 +42,8 @@ public class PathObstacleGenerator : MonoBehaviour
         availableObstaclePoints = obstaclePoints;
         
         //call 2 fois pour chaque moitié
-        SpawnRandomObstacles(startingObstacles);
-        SpawnRandomObstacles(startingObstacles);
+        StartCoroutine(SpawnRandomObstacles(startingObstacles));
+        StartCoroutine(SpawnRandomObstacles(startingObstacles));
     }
     
     public void DestroyAllObstacles()
@@ -66,17 +67,15 @@ public class PathObstacleGenerator : MonoBehaviour
             }
         }
     }
-    
-    public void SpawnRandomObstacles(int quantity)
+
+    public void CallSpawnRandomObstacles(int quantity)
     {
-        if (half)
-        {
-            Debug.Log("First Half");
-        }
-        else
-        {
-            Debug.Log("Second Hal");
-        }
+        StartCoroutine(SpawnRandomObstacles(quantity));
+    }
+    
+    private IEnumerator SpawnRandomObstacles(int quantity)
+    {
+        yield return new WaitForSeconds(0.5f);
         for (int i = 0; i < quantity; i++)
         {
             int random;
