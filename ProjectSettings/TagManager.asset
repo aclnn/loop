@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - ObstacleTag
+  - SideTrigger
+  - PlayerModel
   layers:
   - Default
   - TransparentFX

@@ -364,6 +364,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pathCreator: {fileID: 1299504605}
   speed: 5
+  finalSpeed: 15
   transformOffset: {x: 0, y: 1, z: 0}
   camera: {fileID: 1064930701}
   fovStep: 0.5
@@ -2541,6 +2542,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: lowpolyship
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 38191496cbf1a814f8e72406d3194af7,
+        type: 3}
+      propertyPath: m_TagString
+      value: PlayerModel
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 38191496cbf1a814f8e72406d3194af7, type: 3}
@@ -4721,7 +4727,7 @@ GameObject:
   - component: {fileID: 1581935702}
   m_Layer: 0
   m_Name: SideTrigger
-  m_TagString: Untagged
+  m_TagString: SideTrigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5299,12 +5305,14 @@ MonoBehaviour:
   explosion: {fileID: 3875765022994153980, guid: b2c11cd649ab9914da630ac810277e47,
     type: 3}
   sideTriggerSpeedIncrement: 0.1
+  baseHealth: 0
+  restartGameObject: {fileID: 0}
   collide:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1857803708}
         m_TargetAssemblyTypeName: PlayerBehaviour, Assembly-CSharp
-        m_MethodName: ExplodeShip
+        m_MethodName: BrickCollide
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5325,7 +5333,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
-        m_CallState: 2
+        m_CallState: 0
       - m_Target: {fileID: 112249235}
         m_TargetAssemblyTypeName: Follower, Assembly-CSharp
         m_MethodName: set_CanMove
@@ -5337,7 +5345,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 0
       - m_Target: {fileID: 1857803707}
         m_TargetAssemblyTypeName: Movement, Assembly-CSharp
         m_MethodName: set_MovementEnabled
@@ -5349,7 +5357,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 0
       - m_Target: {fileID: 1298732917}
         m_TargetAssemblyTypeName: CursorScript, Assembly-CSharp
         m_MethodName: EnableCursor
