@@ -7,7 +7,7 @@ public class CursorScript : MonoBehaviour
     public void DisableCursor()
     {
         Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     public void EnableCursor()

@@ -9,6 +9,7 @@ public class Follower : MonoBehaviour
 {
     public PathCreator pathCreator;
     public float speed = 5;
+    public float finalSpeed = 15;
     private float distanceTravelled;
 
     public float DistanceTravelled
@@ -114,6 +115,7 @@ public class Follower : MonoBehaviour
     {
         displaySpeed = Mathf.Lerp(displaySpeed, targetSpeed, displaySpeedStepTime);
         speedText.text = String.Format("Speed: {0:F3}", Math.Round(displaySpeed, 3));
+
         
         if (canMove)
         {
