@@ -21,11 +21,12 @@ public class DrillBehaviour : MonoBehaviour
     [SerializeField] private Camera camera;
     [SerializeField] private Movement movement;
     [SerializeField] private TextMeshProUGUI drillText;
-    [SerializeField] private TextMeshProUGUI drillTimerText;
     [SerializeField] private Collider bodyCollider;
     [SerializeField] private LayerMask obstacleLayer;
     [SerializeField] private GameObject brickDestroyParticles;
-    
+    [SerializeField] private float drillDuration;
+    [SerializeField] private float fovToNormalDifference;
+
     void Start()
     {
         collider = GetComponent<Collider>();
@@ -63,34 +64,20 @@ public class DrillBehaviour : MonoBehaviour
         if (drillCharge >= drillChargeMax)
         {
             animator.SetBool("isDrilling", true);
-            StartCoroutine(DrillTimer());
             StartCoroutine(ChangeCameraFov(camera.fieldOfView + cameraFovIncrement));
             drillCharge = 0;
             IncreaseDrillCharge(0); //Mettre à jour le texte
             Debug.Log("DRILL ON");
             collider.enabled = true;
             bodyCollider.enabled = false;
-            yield return new WaitForSeconds(duration);
-            animator.SetBool("isDrilling", false);
+            yield return new WaitForSeconds(duration - fovToNormalDifference);
             StartCoroutine(ChangeCameraFov(cameraStartFov));
+            yield return new WaitForSeconds(fovToNormalDifference);
+            animator.SetBool("isDrilling", false);
             collider.enabled = false;
             bodyCollider.enabled = true;
             Debug.Log("DRILL OFF");
         }
-    }
-
-    //DEbug ONLY
-    private IEnumerator DrillTimer()
-    {
-        float timer = 5;
-        while(timer > 0)
-        {
-            timer -= Time.deltaTime;
-            drillTimerText.text = "drill: " + Mathf.RoundToInt(timer) + " sec";
-            yield return new WaitForEndOfFrame();
-        }
-
-        drillTimerText.text = "drill: " + 0 + " sec";
     }
 
     private IEnumerator ChangeCameraFov(float goalfov)
@@ -130,7 +117,7 @@ public class DrillBehaviour : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0) &&  movement.movementEnabled)
         {
-            StartCoroutine(GetComponentInChildren<DrillBehaviour>().ActivateDrill(5));
+            StartCoroutine(GetComponentInChildren<DrillBehaviour>().ActivateDrill(drillDuration));
         }
     }
 }
