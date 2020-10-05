@@ -102,6 +102,8 @@ public class PathObstacleGenerator : MonoBehaviour
             
             RefreshAvailableObstaclePoints();
         }
+        
+        Debug.Break();
         half = !half;
     }
 
@@ -109,7 +111,7 @@ public class PathObstacleGenerator : MonoBehaviour
     {
         obstaclePoints.Clear();
         
-        for (float i = 0; i < pathCreator.path.length -1; i += obstacleTileLength)
+        for (float i = 0; i < pathCreator.path.length - 1; i += obstacleTileLength)
         {
             var instantiatedObj = Instantiate(obstaclePoint);
             instantiatedObj.transform.position = pathCreator.path.GetPointAtDistance(i + follower.DistanceTravelled) + obstacleOffset;

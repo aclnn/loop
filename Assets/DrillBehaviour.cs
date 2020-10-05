@@ -30,6 +30,8 @@ public class DrillBehaviour : MonoBehaviour
     private AudioClip destroyBrickSound;
     private AudioClip drillSound;
 
+    public bool drilling = false;
+
     void Start()
     {
         collider = GetComponent<Collider>();
@@ -67,6 +69,7 @@ public class DrillBehaviour : MonoBehaviour
     {
         if (drillCharge >= drillChargeMax)
         {
+            drilling = true;
             animator.SetBool("isDrilling", true);
             StartCoroutine(ChangeCameraFov(camera.fieldOfView + cameraFovIncrement));
             drillCharge = 0;
@@ -78,6 +81,7 @@ public class DrillBehaviour : MonoBehaviour
             yield return new WaitForSeconds(duration - fovToNormalDifference);
             StartCoroutine(ChangeCameraFov(cameraStartFov));
             yield return new WaitForSeconds(fovToNormalDifference);
+            drilling = false;
             animator.SetBool("isDrilling", false);
             collider.enabled = false;
             bodyCollider.enabled = true;

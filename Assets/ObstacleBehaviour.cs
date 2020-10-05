@@ -53,6 +53,7 @@ public class ObstacleBehaviour : MonoBehaviour
 
     public void SpawnObstacle(int pos)
     {
+        Debug.Log("Spawn HERE" + transform.position);
         if (pos == 1)
         {
             SpawnObstacle(ObstacleEnum.FAR_LEFT);

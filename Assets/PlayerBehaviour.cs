@@ -16,6 +16,7 @@ public class PlayerBehaviour : MonoBehaviour
     [SerializeField] private TextMeshProUGUI healthText;
     [SerializeField] private CursorScript cursorScript;
     [SerializeField] private AudioSource soundManager;
+    [SerializeField] private DrillBehaviour drill;
     private int health;
     public UnityEvent collide;
     private Collider hitCollider;
@@ -108,7 +109,10 @@ public class PlayerBehaviour : MonoBehaviour
         playerModel.enabled = true;
         
         // Enable colliders
-        GetComponent<BoxCollider>().enabled = true;
+        if (!drill.drilling)
+        {
+            GetComponent<BoxCollider>().enabled = true;
+        }
         foreach (BoxCollider sideTriggerCollider in sideTriggerColliders)
         {
             sideTriggerCollider.enabled = true;

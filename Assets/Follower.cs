@@ -122,6 +122,8 @@ public class Follower : MonoBehaviour
             distanceTravelled += speed * Time.deltaTime;
             transform.position = pathCreator.path.GetPointAtDistance(distanceTravelled) + transformOffset;
             transform.rotation = pathCreator.path.GetRotationAtDistance(distanceTravelled);
+            
+            
         }
         //J'ai suivi le tuto pour faire ça
         
@@ -129,6 +131,7 @@ public class Follower : MonoBehaviour
         {
             currentLapDistance += speed * Time.deltaTime;
         }
+        
         
         if (currentLapDistance > pathCreator.path.length/2)
         {
