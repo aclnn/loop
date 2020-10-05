@@ -2307,10 +2307,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   drillCharge: 0
-  drillChargeMax: 15
+  drillChargeMax: 1
   cameraFovTime: 0.05
   cameraFovIncrement: 25
   follower: {fileID: 112249235}
+  animator: {fileID: 382458294}
   camera: {fileID: 1064930701}
   movement: {fileID: 1857803707}
   drillText: {fileID: 921984404}

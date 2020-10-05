@@ -17,6 +17,7 @@ public class DrillBehaviour : MonoBehaviour
     
     [Header("References")] 
     public Follower follower;
+    [SerializeField] private Animator animator;
     [SerializeField] private Camera camera;
     [SerializeField] private Movement movement;
     [SerializeField] private TextMeshProUGUI drillText;
@@ -61,6 +62,7 @@ public class DrillBehaviour : MonoBehaviour
     {
         if (drillCharge >= drillChargeMax)
         {
+            animator.SetBool("isDrilling", true);
             StartCoroutine(DrillTimer());
             StartCoroutine(ChangeCameraFov(camera.fieldOfView + cameraFovIncrement));
             drillCharge = 0;
@@ -69,6 +71,7 @@ public class DrillBehaviour : MonoBehaviour
             collider.enabled = true;
             bodyCollider.enabled = false;
             yield return new WaitForSeconds(duration);
+            animator.SetBool("isDrilling", false);
             StartCoroutine(ChangeCameraFov(cameraStartFov));
             collider.enabled = false;
             bodyCollider.enabled = true;
