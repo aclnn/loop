@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using PathCreation.Examples;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Assertions.Comparers;
 
@@ -9,6 +10,7 @@ public class Movement : MonoBehaviour
 {
     [SerializeField] private float sensivity = 0.2f;
     [SerializeField] private float clampOffset = 1f;
+    [SerializeField] private TextMeshProUGUI sensiText;
     
     public RoadMeshCreator roadMeshCreator;
     public bool movementEnabled = false;
@@ -32,6 +34,11 @@ public class Movement : MonoBehaviour
 
             TiltShip();
         }
+
+        sensivity += Input.mouseScrollDelta.y * 0.01f;
+        sensivity = Mathf.Clamp(sensivity, 0.01f, 1f);
+        sensiText.text = "Scroll wheel Sensitivity: " + Math.Round(sensivity, 2);
+
     }
 
     void TiltShip()
