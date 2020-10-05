@@ -2294,7 +2294,7 @@ MonoBehaviour:
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 256
-  brickDestroyParticles: {fileID: 7653068020829524502, guid: a821be7b7b6f6f74a9663fc8901d8454,
+  brickDestroyParticles: {fileID: 3875765022994153980, guid: 21221b1889c8c724c82c94a84c538334,
     type: 3}
 --- !u!65 &767399888
 BoxCollider:
@@ -3593,9 +3593,9 @@ RectTransform:
   m_Father: {fileID: 649297104}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 1}
-  m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 326, y: -95}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -164.4, y: -95}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1176657279
