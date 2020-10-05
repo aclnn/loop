@@ -5306,7 +5306,7 @@ MonoBehaviour:
     type: 3}
   sideTriggerSpeedIncrement: 0.1
   baseHealth: 0
-  restartGameObject: {fileID: 0}
+  restartGameObject: {fileID: 348415630}
   collide:
     m_PersistentCalls:
       m_Calls:
