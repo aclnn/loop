@@ -36,20 +36,8 @@ public class PlayerBehaviour : MonoBehaviour
         shipImmunitySound = Resources.Load<AudioClip>("Sounds/ShipImmunity");
 
         health = baseHealth;
-    }
-
-    private void Update()
-    {
         healthText.text = "life: " + health + "/" + baseHealth;
-        if (health <= 1)
-        {
-            healthText.color = new Color(252, 157, 3);
-        }
-        else
-        {
-            healthText.color = Color.white;
-        }
-     }
+    }
     
     private void OnTriggerEnter(Collider other)
     {
@@ -68,6 +56,8 @@ public class PlayerBehaviour : MonoBehaviour
     public void BrickCollide()
     {
         health--;
+        healthText.text = "life: " + health + "/" + baseHealth;
+        
         if (health <= 0)
         {
             soundManager.PlayOneShot(destroyShipSound);

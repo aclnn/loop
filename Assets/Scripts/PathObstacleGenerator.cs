@@ -40,10 +40,18 @@ public class PathObstacleGenerator : MonoBehaviour
         InitObstaclePos();
 
         availableObstaclePoints = obstaclePoints;
-        
-        //call 2 fois pour chaque moitié
-        StartCoroutine(SpawnRandomObstacles(startingObstacles));
-        StartCoroutine(SpawnRandomObstacles(startingObstacles));
+
+
+        for (int i = 0; i < startingObstacles*2; i++)
+        {
+            int random = Random.Range(0, availableObstaclePoints.Count - 1);
+            
+            int posRandom = Random.Range(1, 6);
+
+            availableObstaclePoints[random].GetComponent<ObstacleBehaviour>().SpawnObstacle(posRandom);
+            
+            RefreshAvailableObstaclePoints();
+        }
     }
     
     public void DestroyAllObstacles()
@@ -75,7 +83,7 @@ public class PathObstacleGenerator : MonoBehaviour
     
     private IEnumerator SpawnRandomObstacles(int quantity)
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
         for (int i = 0; i < quantity; i++)
         {
             int random;
