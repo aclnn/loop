@@ -14,6 +14,8 @@ public class Countdown : MonoBehaviour
     private bool timeIsRunning = true;
 
     [SerializeField] private float timer = 4f;
+    [SerializeField] private AudioSource soundManager;
+    private int currentCountdownValue;
     
     private float tempoTimer;
     public void Start()
@@ -21,6 +23,7 @@ public class Countdown : MonoBehaviour
         text = GetComponent<TextMeshProUGUI>();
         tempoTimer = timer;
         timeIsRunning = true;
+        currentCountdownValue = -1;
     }
 
     void Update()
@@ -29,6 +32,12 @@ public class Countdown : MonoBehaviour
         {
             tempoTimer -= Time.deltaTime;
             text.text = Mathf.RoundToInt(tempoTimer).ToString();
+
+            if (currentCountdownValue != Mathf.RoundToInt(tempoTimer))
+            {
+                currentCountdownValue = Mathf.RoundToInt(tempoTimer);
+                soundManager.PlayOneShot(Resources.Load<AudioClip>("Sounds/Countdown" + currentCountdownValue));
+            }
 
             if (tempoTimer <= -0.5f)
             {

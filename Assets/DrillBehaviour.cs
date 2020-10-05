@@ -26,13 +26,17 @@ public class DrillBehaviour : MonoBehaviour
     [SerializeField] private GameObject brickDestroyParticles;
     [SerializeField] private float drillDuration;
     [SerializeField] private float fovToNormalDifference;
+    [SerializeField] private AudioSource soundManager;
+    private AudioClip destroyBrickSound;
+    private AudioClip drillSound;
 
     void Start()
     {
         collider = GetComponent<Collider>();
         collider.enabled = false;
         drillText.text = "drill: " + drillCharge + "/" + drillChargeMax;
-
+        destroyBrickSound = Resources.Load<AudioClip>("Sounds/DestroyBrick");
+        drillSound = Resources.Load<AudioClip>("Sounds/Drill");
     }
 
     public void SetDrillCharge(int value)
@@ -67,6 +71,7 @@ public class DrillBehaviour : MonoBehaviour
             StartCoroutine(ChangeCameraFov(camera.fieldOfView + cameraFovIncrement));
             drillCharge = 0;
             IncreaseDrillCharge(0); //Mettre à jour le texte
+            soundManager.PlayOneShot(drillSound);
             Debug.Log("DRILL ON");
             collider.enabled = true;
             bodyCollider.enabled = false;
@@ -106,6 +111,7 @@ public class DrillBehaviour : MonoBehaviour
     {
         if (obstacleLayer == (obstacleLayer | (1 << other.gameObject.layer)))
         {
+            soundManager.PlayOneShot(destroyBrickSound);
             Destroy(other.gameObject);
             Instantiate(brickDestroyParticles, other.transform.position, Quaternion.identity);
         }

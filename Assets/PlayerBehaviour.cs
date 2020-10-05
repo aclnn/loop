@@ -15,17 +15,25 @@ public class PlayerBehaviour : MonoBehaviour
     [SerializeField] private GameObject restartGameObject;
     [SerializeField] private TextMeshProUGUI healthText;
     [SerializeField] private CursorScript cursorScript;
+    [SerializeField] private AudioSource soundManager;
     private int health;
     public UnityEvent collide;
     private Collider hitCollider;
     private Follower followerComponent;
     private Movement movementComponent;
+    private AudioClip sideTriggerSound;
+    private AudioClip destroyShipSound;
+    private AudioClip shipImmunitySound;
 
     private void Start()
     {
         hitCollider = GetComponent<Collider>();
         followerComponent = GetComponentInParent<Follower>();
         movementComponent = GetComponent<Movement>();
+
+        sideTriggerSound = Resources.Load<AudioClip>("Sounds/SideTrigger");
+        destroyShipSound = Resources.Load<AudioClip>("Sounds/DestroyShip");
+        shipImmunitySound = Resources.Load<AudioClip>("Sounds/ShipImmunity");
 
         health = baseHealth;
     }
@@ -53,6 +61,7 @@ public class PlayerBehaviour : MonoBehaviour
 
     public void SideTrigger()
     {
+        soundManager.PlayOneShot(sideTriggerSound);
         transform.parent.GetComponent<Follower>().AddSpeed(sideTriggerSpeedIncrement);
     }
 
@@ -61,10 +70,12 @@ public class PlayerBehaviour : MonoBehaviour
         health--;
         if (health <= 0)
         {
+            soundManager.PlayOneShot(destroyShipSound);
             Die();
         }
         else
         {
+            soundManager.PlayOneShot(shipImmunitySound);
             StartCoroutine(Immunity(2F));
         }
     }
