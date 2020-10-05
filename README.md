@@ -15,3 +15,7 @@ __Controls:__
 - Left click to activate the drill
 
 - Mouse wheel to increase/decrease sensitivity
+
+Links : 
+https://adaxxas.itch.io/neonloop
+https://ldjam.com/events/ludum-dare/47/neonloop
