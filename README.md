@@ -16,6 +16,6 @@ __Controls:__
 
 - Mouse wheel to increase/decrease sensitivity
 
-Links : 
-https://adaxxas.itch.io/neonloop
+Links :  <br />
+https://adaxxas.itch.io/neonloop  <br />
 https://ldjam.com/events/ludum-dare/47/neonloop
